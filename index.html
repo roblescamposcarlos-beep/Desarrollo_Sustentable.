@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sostenible vs. sustentable — ¿cuál es la diferencia?</title>
+<meta name="description" content="Sostenible y sustentable se usan como sinónimos, pero no significan lo mismo. Definiciones, origen del término y cómo aplicarlos.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --cream:#E1E0CC; --ink:#0A0A09; --mut:rgba(225,224,204,0.72); --line:rgba(225,224,204,0.14); }
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { margin:0; background:var(--ink); color:var(--cream); font-family:'Archivo',Helvetica,Arial,sans-serif; -webkit-font-smoothing:antialiased; overflow-x:hidden; padding:8px; }
+  a { color:var(--cream); text-decoration:none; }
+  ::selection { background:var(--cream); color:var(--ink); }
+  .mono { font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:rgba(225,224,204,0.45); }
+  .wrap { max-width:1600px; margin:0 auto; padding:0 40px; }
+
+  /* hero */
+  .hero { position:relative; height:calc(100vh - 16px); min-height:600px; border-radius:32px; overflow:hidden; background:#14140F; }
+  .hero video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .noise { position:absolute; inset:0; pointer-events:none; mix-blend-mode:overlay; opacity:.55;
+    background-image:repeating-linear-gradient(115deg, rgba(255,255,255,.06) 0 1px, transparent 1px 4px); }
+  .shade { position:absolute; inset:0; pointer-events:none;
+    background:linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,.05) 45%, rgba(0,0,0,.7)); }
+  nav { position:absolute; left:50%; top:0; z-index:20; transform:translateX(-50%); }
+  nav div { display:flex; align-items:center; gap:28px; background:var(--ink); padding:12px 32px; border-radius:0 0 24px 24px; }
+  nav a { font-size:13px; color:rgba(225,224,204,.8); transition:color .25s ease; }
+  nav a:hover { color:var(--cream); }
+  .hero-bottom { position:absolute; left:0; right:0; bottom:0; padding:0 40px 8px; }
+  .grid12 { display:grid; grid-template-columns:repeat(12,1fr); gap:32px; }
+  h1 { margin:0; font-weight:500; line-height:.85; letter-spacing:-.07em; font-size:min(13vw,220px); }
+  h1 .w { display:inline-block; position:relative; }
+  h1 sup { position:absolute; top:.65em; right:-.3em; font-size:.31em; }
+  .btn { display:inline-flex; align-items:center; gap:8px; align-self:flex-start; border-radius:999px;
+    background:var(--cream); color:var(--ink); padding:4px 4px 4px 22px; font-size:15px; font-weight:500; transition:gap .3s ease; }
+  .btn:hover { gap:14px; color:var(--ink); }
+  .btn span { display:flex; width:40px; height:40px; align-items:center; justify-content:center; border-radius:999px; background:var(--ink); }
+  .btn.inv { background:var(--ink); color:var(--cream); }
+  .btn.inv:hover { color:var(--cream); }
+  .btn.inv span { background:var(--cream); }
+
+  h2 { margin:0; font-weight:500; letter-spacing:-.045em; line-height:1.02; font-size:min(6.4vw,92px); }
+  h2 .w { display:inline-block; }
+  p { text-wrap:pretty; }
+  .lede { margin:0; font-size:16px; line-height:1.5; color:var(--mut); }
+  .lede strong { font-weight:500; color:var(--cream); }
+
+  /* marquee */
+  .marquee { border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:28px 0; overflow:hidden; }
+  .marquee-track { display:flex; width:max-content; animation:marquee 34s linear infinite;
+    font-size:min(5vw,64px); font-weight:500; letter-spacing:-.04em; color:rgba(225,224,204,.5); }
+  .marquee-track > span { display:flex; gap:56px; padding-right:56px; }
+  @keyframes marquee { from { transform:translateX(0) } to { transform:translateX(-50%) } }
+
+  /* cards */
+  .cards { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  .card { min-height:340px; border-radius:20px; background-color:#15150F;
+    background-image:repeating-linear-gradient(135deg, rgba(225,224,204,.05) 0 1px, transparent 1px 7px);
+    display:flex; flex-direction:column; justify-content:space-between; gap:40px; padding:24px; }
+  .card h3 { margin:0; font-size:32px; font-weight:500; letter-spacing:-.035em; line-height:1.05; }
+  .card p { margin:12px 0 0; font-size:15px; line-height:1.5; color:rgba(225,224,204,.65); }
+  .card-foot { display:flex; justify-content:space-between; padding-top:16px; font-size:15px; }
+  .card-foot em { font-style:normal; color:rgba(225,224,204,.5); }
+
+  /* rows */
+  .row { display:grid; grid-template-columns:80px 1fr 1fr 120px; gap:32px; align-items:baseline;
+    padding:36px 8px; border-top:1px solid var(--line); }
+  .row:last-child { border-bottom:1px solid var(--line); }
+  .row h3 { margin:0; font-size:min(3.4vw,40px); font-weight:500; letter-spacing:-.035em; }
+  .row p { margin:0; font-size:15px; line-height:1.45; color:rgba(225,224,204,.65); }
+  .row .mono:last-child { justify-self:end; }
+
+  /* outro */
+  .outro { background:var(--cream); color:var(--ink); border-radius:32px; padding:120px 40px 40px;
+    display:flex; flex-direction:column; gap:96px; }
+  .outro h2 { font-size:min(9vw,150px); line-height:.88; letter-spacing:-.055em; }
+  .outro p { margin:0; font-size:16px; line-height:1.5; color:rgba(10,10,9,.7); }
+  .foot { display:flex; justify-content:space-between; align-items:flex-end; gap:32px;
+    border-top:1px solid rgba(10,10,9,.15); padding-top:24px;
+    font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:rgba(10,10,9,.55); }
+  .foot a { color:rgba(10,10,9,.55); }
+  .foot a:hover { color:var(--ink); }
+  .foot div { display:flex; gap:24px; }
+
+  /* reveal */
+  [data-reveal] { opacity:0; transform:translateY(20px); transition:opacity .85s cubic-bezier(.16,1,.3,1), transform .85s cubic-bezier(.16,1,.3,1); }
+  [data-reveal].in { opacity:1; transform:none; }
+  .pull { opacity:0; transform:translateY(.55em); transition:opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1); }
+  .pull.in { opacity:1; transform:none; }
+  @media (prefers-reduced-motion: reduce) {
+    [data-reveal], .pull { opacity:1 !important; transform:none !important; }
+    .marquee-track { animation:none; }
+  }
+
+  @media (max-width:900px) {
+    .wrap, .hero-bottom { padding-left:20px; padding-right:20px; }
+    .grid12 { grid-template-columns:1fr; gap:24px; }
+    nav div { gap:14px; padding:10px 16px; }
+    nav a { font-size:11px; }
+    h1 { font-size:17vw; }
+    .cards { grid-template-columns:1fr; }
+    .row { grid-template-columns:48px 1fr; }
+    .row .mono:last-child { display:none; }
+    .outro { padding:72px 20px 24px; gap:56px; }
+    .foot { flex-direction:column; align-items:flex-start; gap:16px; }
+  }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <video autoplay loop muted playsinline src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260405_170732_8a9ccda6-5cff-4628-b164-059c500a2b41.mp4"></video>
+  <div class="noise"></div>
+  <div class="shade"></div>
+
+  <nav><div>
+    <a href="#definiciones">Definiciones</a>
+    <a href="#diferencias">Diferencias</a>
+    <a href="#origen">Origen</a>
+    <a href="#aplicaciones">Aplicaciones</a>
+    <a href="#cierre">Cierre</a>
+  </div></nav>
+
+  <div class="hero-bottom">
+    <div class="grid12" style="align-items:end;gap:24px">
+      <div style="grid-column:span 8">
+        <h1><span class="w pull">Sostenible<sup>*</sup></span></h1>
+        <p class="mono" style="margin:8px 0 0">* y sustentable: dos palabras que no significan lo mismo</p>
+      </div>
+      <div style="grid-column:span 4;display:flex;flex-direction:column;gap:24px;padding-bottom:40px">
+        <p class="lede" data-reveal style="font-size:15px;line-height:1.35">Se usan como sinónimos en casi cualquier informe, campaña o discurso. Pero una habla de sostenerse por sí mismo con los recursos que hay, y la otra de mantenerse en el tiempo sin comprometer a quienes vienen después. La diferencia cambia lo que se mide y lo que se promete.</p>
+        <a class="btn" href="#definiciones" data-reveal>Ver la diferencia
+          <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E1E0CC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap" id="definiciones" style="padding-top:180px;padding-bottom:140px">
+  <p class="mono" style="margin:0 0 64px">01 &nbsp; Definiciones</p>
+  <h2><span class="w pull">Mismo objetivo,</span> <span class="w pull">distinto</span> <span class="w pull">alcance.</span></h2>
+  <div class="grid12" style="margin-top:80px">
+    <p class="lede" data-reveal style="grid-column:6 / span 3"><strong>Sustentable.</strong> De sustentar: sostener algo desde abajo para que no caiga. Describe un sistema que se mantiene con los recursos que tiene disponibles, sin depender de un aporte externo. El foco está en la autosuficiencia y en el uso racional de esos recursos.</p>
+    <p class="lede" data-reveal style="grid-column:9 / span 3"><strong>Sostenible.</strong> De sostener: mantener algo en el tiempo. Describe un proceso que satisface las necesidades del presente sin comprometer la capacidad de las generaciones futuras de satisfacer las suyas. El foco está en la duración y en el equilibrio entre lo ambiental, lo social y lo económico.</p>
+  </div>
+</section>
+
+<section class="marquee">
+  <div class="marquee-track">
+    <span><span>Recursos</span><span>·</span><span>Equilibrio</span><span>·</span><span>Tiempo</span><span>·</span><span>Ambiental</span><span>·</span><span>Social</span><span>·</span><span>Económico</span><span>·</span></span>
+    <span aria-hidden="true"><span>Recursos</span><span>·</span><span>Equilibrio</span><span>·</span><span>Tiempo</span><span>·</span><span>Ambiental</span><span>·</span><span>Social</span><span>·</span><span>Económico</span><span>·</span></span>
+  </div>
+</section>
+
+<section class="wrap" id="diferencias" style="padding-top:140px;padding-bottom:140px">
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:64px;flex-wrap:wrap">
+    <p class="mono" style="margin:0">02 &nbsp; La diferencia</p>
+    <p class="lede" style="margin:0;max-width:36ch">Tres cortes para separarlas: qué se sostiene, durante cuánto tiempo y para quién.</p>
+  </div>
+  <div class="cards">
+    <div data-reveal>
+      <div class="card">
+        <span class="mono" style="font-size:10px">Qué se sostiene</span>
+        <div><h3>Los recursos</h3><p>Lo sustentable mira hacia adentro: que un sistema funcione con lo que tiene. Una vivienda que produce su propia energía es sustentable.</p></div>
+      </div>
+      <div class="card-foot"><span>Sustentable</span><em>Autosuficiencia</em></div>
+    </div>
+    <div data-reveal style="transition-delay:.1s">
+      <div class="card">
+        <span class="mono" style="font-size:10px">Cuánto tiempo</span>
+        <div><h3>El largo plazo</h3><p>Lo sostenible mira hacia adelante: que siga funcionando dentro de treinta o cien años, y que otros puedan hacer lo mismo entonces.</p></div>
+      </div>
+      <div class="card-foot"><span>Sostenible</span><em>Permanencia</em></div>
+    </div>
+    <div data-reveal style="transition-delay:.2s">
+      <div class="card">
+        <span class="mono" style="font-size:10px">Para quién</span>
+        <div><h3>Lo que comparten</h3><p>Ambas buscan equilibrio entre ambiente, sociedad y economía. En la práctica, casi todo lo sustentable es un paso hacia lo sostenible.</p></div>
+      </div>
+      <div class="card-foot"><span>En común</span><em>Equilibrio</em></div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap" id="origen" style="padding-bottom:140px">
+  <p class="mono" style="margin:0 0 48px">03 &nbsp; De dónde viene la confusión</p>
+  <div class="grid12">
+    <p data-reveal style="grid-column:span 6;margin:0;font-size:min(2.6vw,32px);line-height:1.25;letter-spacing:-.02em">El Informe Brundtland, publicado en 1987 por Naciones Unidas, definió el desarrollo sostenible en inglés: <span style="color:rgba(225,224,204,.6)">sustainable development</span>. Al traducirlo, España adoptó «sostenible» y buena parte de América Latina «sustentable».</p>
+    <div style="grid-column:9 / span 4;display:flex;flex-direction:column;gap:24px">
+      <p class="lede" data-reveal>De ahí que hoy convivan las dos y que muchos textos las traten como equivalentes. Ambas son correctas en español y ninguna es un error de traducción.</p>
+      <p class="lede" data-reveal style="transition-delay:.1s">La diferencia útil no está en el diccionario sino en el uso técnico: «sustentable» describe la capacidad de mantenerse; «sostenible» describe el compromiso de mantenerse en el tiempo con criterios ambientales, sociales y económicos.</p>
+    </div>
+  </div>
+</section>
+
+<section class="wrap" id="aplicaciones" style="padding-bottom:140px">
+  <p class="mono" style="margin:0 0 48px">04 &nbsp; Cómo se aplica</p>
+  <div class="row" data-reveal>
+    <span class="mono">01</span>
+    <h3>Energía</h3>
+    <p>Un panel solar que abastece una casa la vuelve sustentable. Una red que sustituye combustibles fósiles durante décadas es sostenible.</p>
+    <span class="mono">Recurso</span>
+  </div>
+  <div class="row" data-reveal style="transition-delay:.08s">
+    <span class="mono">02</span>
+    <h3>Ciudad</h3>
+    <p>Un edificio que recicla su agua es sustentable. Un barrio que además es accesible, asequible y habitable en el futuro es sostenible.</p>
+    <span class="mono">Territorio</span>
+  </div>
+  <div class="row" data-reveal style="transition-delay:.16s">
+    <span class="mono">03</span>
+    <h3>Empresa</h3>
+    <p>Un proceso que aprovecha sus propios residuos es sustentable. Una operación que mantiene resultados sin agotar su entorno ni a su gente es sostenible.</p>
+    <span class="mono">Gestión</span>
+  </div>
+</section>
+
+<section id="cierre" class="outro">
+  <div class="grid12" style="align-items:end">
+    <h2 style="grid-column:span 8"><span class="w pull">Usa</span> <span class="w pull">la palabra</span> <span class="w pull">exacta.</span></h2>
+    <div style="grid-column:span 4;display:flex;flex-direction:column;gap:24px;padding-bottom:16px">
+      <p>Si hablas de un sistema que se abastece solo, di sustentable. Si hablas de mantener algo en el tiempo sin comprometer a los que vienen, di sostenible.</p>
+      <a class="btn inv" href="#definiciones">Volver a las definiciones
+        <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0A0A09" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
+      </a>
+    </div>
+  </div>
+  <div class="foot">
+    <span>Sostenible vs. sustentable — glosario</span>
+    <div>
+      <a href="#definiciones">Definiciones</a>
+      <a href="#diferencias">Diferencias</a>
+      <a href="#origen">Origen</a>
+    </div>
+  </div>
+</section>
+
+<script>
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      var el = e.target;
+      if (el.classList.contains('pull')) {
+        var group = Array.prototype.slice.call(el.parentNode.querySelectorAll('.pull'));
+        group.forEach(function (g, i) { setTimeout(function () { g.classList.add('in'); }, i * 85); });
+      } else {
+        el.classList.add('in');
+      }
+      io.unobserve(el);
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+  document.querySelectorAll('[data-reveal], .pull').forEach(function (el) { io.observe(el); });
+  setTimeout(function () {
+    document.querySelectorAll('[data-reveal], .pull').forEach(function (el) { el.classList.add('in'); });
+  }, 5000);
+</script>
+
+</body>
+</html>
