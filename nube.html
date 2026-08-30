@@ -4,184 +4,319 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Impacto ambiental del almacenamiento en la nube</title>
+<meta name="description" content="Qué es el almacenamiento en la nube, por qué tiene un impacto ambiental real y un espacio para compartir tu opinión.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --verde: #2e7d32;
-    --verde-claro: #e8f5e9;
-    --texto: #1c1c1c;
-    --fondo: #f7f9f7;
-    --borde: #cfe3d0;
+    --ink:#0b1f17;
+    --ink-soft:#3a4a43;
+    --paper:#f6faf7;
+    --card:#ffffff;
+    --line:#e1ece4;
+    --green-900:#0f3d2e;
+    --green-700:#1f6b4a;
+    --green-500:#2e9563;
+    --lime-400:#7fe3a3;
+    --lime-300:#b9f6cf;
+    --danger:#b3261e;
+    --danger-bg:#fdecea;
   }
-  * { box-sizing: border-box; }
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
   body {
-    margin: 0;
-    font-family: "Segoe UI", Arial, sans-serif;
-    background: var(--fondo);
-    color: var(--texto);
-    line-height: 1.6;
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Sora',system-ui,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
   }
-  header {
-    background: var(--verde);
-    color: white;
-    padding: 2.5rem 1.5rem;
-    text-align: center;
+  .mono { font-family:'JetBrains Mono',monospace; letter-spacing:.08em; text-transform:uppercase; font-size:12px; color:var(--green-700); }
+  .wrap { max-width:1080px; margin:0 auto; padding:0 24px; }
+  a { color:inherit; }
+  img,svg { display:block; }
+
+  /* nav */
+  header.nav {
+    position:sticky; top:0; z-index:50;
+    background:rgba(246,250,247,.85); backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
   }
-  header h1 { margin: 0 0 .5rem; font-size: 1.8rem; }
-  header p { margin: 0; opacity: .9; }
-  main {
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 2rem 1.5rem 4rem;
+  .nav-inner { display:flex; align-items:center; justify-content:space-between; padding:16px 24px; max-width:1080px; margin:0 auto; }
+  .brand { display:flex; align-items:center; gap:10px; font-weight:700; font-size:16px; }
+  .brand-dot { width:10px; height:10px; border-radius:50%; background:var(--green-500); box-shadow:0 0 0 4px var(--lime-300); }
+  .nav-links { display:flex; gap:28px; }
+  .nav-links a { font-size:14px; font-weight:500; color:var(--ink-soft); text-decoration:none; transition:color .2s ease; }
+  .nav-links a:hover { color:var(--green-900); }
+  .nav-cta {
+    background:var(--green-900); color:#fff; text-decoration:none; font-size:14px; font-weight:600;
+    padding:9px 18px; border-radius:999px; transition:transform .2s ease, background .2s ease;
   }
-  section {
-    background: white;
-    border: 1px solid var(--borde);
-    border-radius: 10px;
-    padding: 1.75rem;
-    margin-bottom: 1.75rem;
+  .nav-cta:hover { background:var(--green-700); transform:translateY(-1px); }
+
+  /* hero */
+  .hero { position:relative; overflow:hidden; padding:96px 0 88px; }
+  .hero::before {
+    content:""; position:absolute; top:-160px; right:-140px; width:480px; height:480px; border-radius:50%;
+    background:radial-gradient(circle at 30% 30%, var(--lime-300), transparent 70%); opacity:.7; filter:blur(4px);
   }
-  section h2 {
-    color: var(--verde);
-    margin-top: 0;
-    font-size: 1.3rem;
-    border-bottom: 2px solid var(--verde-claro);
-    padding-bottom: .5rem;
+  .hero::after {
+    content:""; position:absolute; bottom:-220px; left:-160px; width:420px; height:420px; border-radius:50%;
+    background:radial-gradient(circle at 60% 40%, var(--green-500), transparent 70%); opacity:.18;
   }
-  ul { padding-left: 1.2rem; }
-  li { margin-bottom: .5rem; }
-  label {
-    display: block;
-    font-weight: 600;
-    margin: 1rem 0 .35rem;
+  .hero-inner { position:relative; max-width:760px; }
+  .badge {
+    display:inline-flex; align-items:center; gap:8px; background:var(--card); border:1px solid var(--line);
+    padding:7px 14px; border-radius:999px; font-size:13px; font-weight:600; color:var(--green-700); margin-bottom:28px;
   }
-  input[type="text"],
-  input[type="email"],
-  textarea {
-    width: 100%;
-    padding: .65rem .75rem;
-    border: 1px solid var(--borde);
-    border-radius: 6px;
-    font-size: 1rem;
-    font-family: inherit;
+  h1 {
+    margin:0 0 22px; font-weight:800; letter-spacing:-.03em; line-height:1.04;
+    font-size:clamp(2.2rem, 5vw, 3.6rem); color:var(--green-900);
   }
-  textarea { resize: vertical; min-height: 110px; }
-  button {
-    margin-top: 1.5rem;
-    background: var(--verde);
-    color: white;
-    border: none;
-    padding: .8rem 1.6rem;
-    border-radius: 6px;
-    font-size: 1rem;
-    cursor: pointer;
+  h1 span { color:var(--green-500); }
+  .hero p.lede { font-size:18px; line-height:1.6; color:var(--ink-soft); max-width:58ch; margin:0 0 36px; }
+  .hero-actions { display:flex; gap:14px; flex-wrap:wrap; }
+  .btn {
+    display:inline-flex; align-items:center; gap:10px; font-weight:600; font-size:15px; text-decoration:none;
+    padding:14px 24px; border-radius:12px; border:1px solid transparent; cursor:pointer; transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
   }
-  button:hover { background: #256428; }
-  button:disabled { opacity: .6; cursor: not-allowed; }
-  #mensaje {
-    margin-top: 1rem;
-    padding: .8rem 1rem;
-    border-radius: 6px;
-    display: none;
+  .btn-primary { background:var(--green-900); color:#fff; box-shadow:0 10px 24px -12px rgba(15,61,46,.55); }
+  .btn-primary:hover { background:var(--green-700); transform:translateY(-2px); }
+  .btn-ghost { background:var(--card); color:var(--green-900); border-color:var(--line); }
+  .btn-ghost:hover { border-color:var(--green-500); transform:translateY(-2px); }
+
+  /* section shell */
+  section { padding:88px 0; }
+  .section-head { max-width:640px; margin:0 auto 56px; text-align:center; }
+  .section-head .mono { display:block; margin-bottom:14px; }
+  .section-head h2 { font-size:clamp(1.7rem,3.2vw,2.4rem); font-weight:800; letter-spacing:-.025em; margin:0 0 14px; color:var(--green-900); }
+  .section-head p { color:var(--ink-soft); font-size:16px; line-height:1.6; margin:0; }
+
+  /* what-is */
+  .whatis { display:grid; grid-template-columns:1.1fr .9fr; gap:56px; align-items:center; }
+  .whatis p { font-size:17px; line-height:1.7; color:var(--ink-soft); margin:0 0 16px; }
+  .whatis-card {
+    background:var(--green-900); color:#fff; border-radius:22px; padding:36px;
+    display:flex; flex-direction:column; gap:22px;
   }
-  #mensaje.ok {
-    display: block;
-    background: var(--verde-claro);
-    color: #1b4d1e;
-    border: 1px solid var(--verde);
+  .whatis-stat { display:flex; align-items:baseline; gap:10px; }
+  .whatis-stat b { font-size:2.1rem; font-weight:800; color:var(--lime-400); }
+  .whatis-stat span { font-size:14px; color:rgba(255,255,255,.75); line-height:1.4; }
+  .whatis-card hr { border:none; border-top:1px solid rgba(255,255,255,.15); margin:0; }
+
+  /* impact cards */
+  .cards { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
+  .card {
+    background:var(--card); border:1px solid var(--line); border-radius:18px; padding:28px 24px;
+    transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
   }
-  #mensaje.error {
-    display: block;
-    background: #fdecea;
-    color: #7a1c1c;
-    border: 1px solid #e57373;
+  .card:hover { transform:translateY(-6px); box-shadow:0 20px 40px -24px rgba(15,61,46,.35); border-color:var(--green-500); }
+  .icon {
+    width:46px; height:46px; border-radius:12px; display:flex; align-items:center; justify-content:center;
+    background:var(--lime-300); margin-bottom:18px;
   }
-  footer {
-    text-align: center;
-    color: #667;
-    font-size: .85rem;
-    padding: 1rem;
+  .icon svg { width:22px; height:22px; }
+  .card h3 { margin:0 0 8px; font-size:17px; font-weight:700; color:var(--green-900); }
+  .card p { margin:0; font-size:14.5px; line-height:1.55; color:var(--ink-soft); }
+
+  .note-strip {
+    margin-top:40px; background:var(--card); border:1px dashed var(--green-500); border-radius:16px;
+    padding:20px 24px; font-size:15px; line-height:1.6; color:var(--ink-soft);
+  }
+  .note-strip strong { color:var(--green-900); }
+
+  /* opinion + form */
+  .opinion { background:var(--green-900); color:#fff; border-radius:28px; padding:64px 40px; }
+  .opinion .section-head p { color:rgba(255,255,255,.75); }
+  .opinion .section-head h2 { color:#fff; }
+  .opinion .mono { color:var(--lime-400); }
+
+  form {
+    max-width:560px; margin:0 auto; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.14);
+    border-radius:20px; padding:32px;
+  }
+  .field { margin-bottom:20px; }
+  label { display:block; font-size:13px; font-weight:600; letter-spacing:.02em; margin-bottom:8px; color:rgba(255,255,255,.85); }
+  input[type="text"], input[type="email"], textarea {
+    width:100%; padding:13px 14px; border-radius:10px; border:1px solid rgba(255,255,255,.22);
+    background:rgba(255,255,255,.06); color:#fff; font-size:15px; font-family:inherit;
+  }
+  input::placeholder, textarea::placeholder { color:rgba(255,255,255,.4); }
+  input:focus, textarea:focus { outline:none; border-color:var(--lime-400); background:rgba(255,255,255,.1); }
+  textarea { resize:vertical; min-height:110px; }
+
+  button[type="submit"] {
+    width:100%; margin-top:6px; background:var(--lime-400); color:var(--green-900); border:none;
+    padding:15px; border-radius:12px; font-size:15.5px; font-weight:700; cursor:pointer;
+    transition:transform .2s ease, background .2s ease;
+  }
+  button[type="submit"]:hover { background:#93f0b4; transform:translateY(-2px); }
+  button[type="submit"]:disabled { opacity:.6; cursor:not-allowed; transform:none; }
+
+  #mensaje { margin-top:16px; padding:12px 14px; border-radius:10px; font-size:14px; display:none; }
+  #mensaje.ok { display:block; background:rgba(127,227,163,.15); border:1px solid var(--lime-400); color:var(--lime-400); }
+  #mensaje.error { display:block; background:rgba(179,38,30,.18); border:1px solid #ff9a92; color:#ffb3ac; }
+
+  /* footer */
+  footer { padding:40px 0 56px; text-align:center; }
+  footer p { margin:0; font-size:13px; color:var(--ink-soft); }
+
+  /* reveal */
+  [data-reveal] { opacity:0; transform:translateY(16px); transition:opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1); }
+  [data-reveal].in { opacity:1; transform:none; }
+
+  @media (max-width:860px) {
+    .nav-links { display:none; }
+    .whatis { grid-template-columns:1fr; }
+    .cards { grid-template-columns:1fr 1fr; }
+    .opinion { padding:48px 22px; border-radius:20px; }
+    form { padding:24px; }
+  }
+  @media (max-width:520px) {
+    .cards { grid-template-columns:1fr; }
+    .hero { padding:64px 0 56px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    [data-reveal] { opacity:1 !important; transform:none !important; }
   }
 </style>
 </head>
 <body>
 
-<header>
-  <h1>🌍 Impacto ambiental del almacenamiento en la nube</h1>
-  <p>Una mirada rápida a lo que hay detrás de cada archivo que guardamos "en la nube"</p>
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand"><span class="brand-dot"></span> Nube &amp; Ambiente</div>
+    <nav class="nav-links">
+      <a href="#que-es">Qué es</a>
+      <a href="#impacto">Impacto</a>
+      <a href="#opinion">Opinión</a>
+    </nav>
+    <a class="nav-cta" href="#opinion">Participar</a>
+  </div>
 </header>
 
-<main>
-
-  <section>
-    <h2>¿Qué es el almacenamiento en la nube?</h2>
-    <p>
-      El almacenamiento en la nube consiste en guardar archivos, fotos, videos y datos
-      en servidores remotos —propiedad de empresas como Google, Amazon o Microsoft—
-      en lugar de en el disco duro de un dispositivo local. Estos servidores viven en
-      instalaciones enormes llamadas <strong>centros de datos</strong>, que funcionan
-      las 24 horas del día, todos los días del año.
+<section class="hero">
+  <div class="wrap hero-inner">
+    <span class="badge">🌎 Encuesta abierta · toma 1 minuto</span>
+    <h1>Lo que la nube <span>no muestra</span> tiene un costo ambiental real</h1>
+    <p class="lede">
+      Cada foto que respaldas, cada correo que archivas y cada backup automático vive
+      en un centro de datos real, que consume energía y agua las 24 horas del día.
+      Conoce el impacto y cuéntanos qué piensas al respecto.
     </p>
-  </section>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#opinion">Dar mi opinión →</a>
+      <a class="btn btn-ghost" href="#que-es">Ver el impacto</a>
+    </div>
+  </div>
+</section>
 
-  <section>
-    <h2>¿Por qué tiene un impacto ambiental?</h2>
-    <ul>
-      <li>
-        <strong>Consumo de energía:</strong> los centros de datos necesitan electricidad
-        constante para mantener miles de servidores encendidos y funcionando, gran parte
-        de la cual todavía proviene de fuentes no renovables.
-      </li>
-      <li>
-        <strong>Consumo de agua:</strong> muchos centros de datos usan agua para sus
-        sistemas de refrigeración, ya que el equipo genera grandes cantidades de calor
-        que debe disiparse constantemente.
-      </li>
-      <li>
-        <strong>Huella de carbono:</strong> la combinación de electricidad, refrigeración
-        y la fabricación del hardware genera emisiones de CO₂ asociadas a cada archivo
-        que subimos, duplicamos o dejamos olvidado "por si acaso".
-      </li>
-      <li>
-        <strong>Uso de suelo y materiales:</strong> construir y mantener estos centros
-        requiere terrenos, metales y componentes electrónicos cuya extracción también
-        tiene un costo ambiental.
-      </li>
-    </ul>
-    <p>
-      En resumen: aunque no lo veamos, cada foto duplicada, cada correo con adjuntos
-      pesados y cada respaldo automático tiene un costo energético real en algún
-      centro de datos del mundo.
-    </p>
-  </section>
+<section id="que-es">
+  <div class="wrap whatis">
+    <div data-reveal>
+      <p class="mono" style="margin-bottom:14px">01 · Qué es</p>
+      <p>
+        El almacenamiento en la nube consiste en guardar archivos, fotos, videos y
+        datos en servidores remotos —propiedad de empresas como Google, Amazon o
+        Microsoft— en lugar de en el disco duro de un dispositivo local.
+      </p>
+      <p>
+        Esos servidores viven en instalaciones enormes llamadas <strong>centros de
+        datos</strong>: naves industriales con miles de máquinas encendidas sin
+        parar, todos los días del año, para que tus archivos estén disponibles al
+        instante desde cualquier lugar.
+      </p>
+    </div>
+    <div class="whatis-card" data-reveal>
+      <div class="whatis-stat">
+        <b>24/7</b>
+        <span>Los centros de datos nunca se apagan: energía y refrigeración constantes.</span>
+      </div>
+      <hr>
+      <div class="whatis-stat">
+        <b>3×</b>
+        <span>Copias, respaldos y sincronizaciones suelen triplicar el espacio real que ocupa un mismo archivo.</span>
+      </div>
+      <hr>
+      <div class="whatis-stat">
+        <b>1%</b>
+        <span>Se estima que los centros de datos representan cerca de esa fracción del consumo eléctrico mundial.</span>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <section>
-    <h2>Cuéntanos tu opinión</h2>
-    <p>
-      Este es tu espacio: ¿qué piensas sobre el impacto ambiental del almacenamiento
-      en la nube? ¿Cambiarías tus hábitos digitales después de leer esto? Escribe tu
-      nombre, tu correo y comparte tu opinión personal en el formulario.
-    </p>
+<section id="impacto">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="mono">02 · El impacto</span>
+      <h2>¿Por qué tiene un impacto ambiental?</h2>
+      <p>Cuatro consecuencias directas de mantener el mundo conectado a la nube.</p>
+    </div>
 
-    <form id="formOpinion">
-      <label for="nombre">Nombre</label>
-      <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre">
+    <div class="cards">
+      <div class="card" data-reveal>
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#0f3d2e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+        <h3>Consumo de energía</h3>
+        <p>Miles de servidores encendidos sin parar, gran parte alimentados todavía con electricidad de fuentes no renovables.</p>
+      </div>
+      <div class="card" data-reveal style="transition-delay:.05s">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#0f3d2e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2s7 8.5 7 13a7 7 0 1 1-14 0c0-4.5 7-13 7-13z"/></svg></div>
+        <h3>Consumo de agua</h3>
+        <p>Los sistemas de refrigeración usan grandes volúmenes de agua para disipar el calor que generan los servidores.</p>
+      </div>
+      <div class="card" data-reveal style="transition-delay:.1s">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#0f3d2e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19a4.5 4.5 0 0 0 0-9 6 6 0 0 0-11.4-2.5A4.5 4.5 0 0 0 6.5 19h11z"/></svg></div>
+        <h3>Huella de carbono</h3>
+        <p>Electricidad, refrigeración y fabricación de hardware suman emisiones de CO₂ detrás de cada archivo guardado "por si acaso".</p>
+      </div>
+      <div class="card" data-reveal style="transition-delay:.15s">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#0f3d2e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="6" rx="1"/><rect x="2" y="15" width="20" height="6" rx="1"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg></div>
+        <h3>Suelo y materiales</h3>
+        <p>Construir y mantener centros de datos requiere terrenos, metales y componentes cuya extracción también tiene costo ambiental.</p>
+      </div>
+    </div>
 
-      <label for="correo">Correo electrónico</label>
-      <input type="email" id="correo" name="correo" required placeholder="tu@correo.com">
+    <div class="note-strip" data-reveal>
+      <strong>En resumen:</strong> aunque no lo veamos, cada foto duplicada, cada correo con adjuntos pesados
+      y cada respaldo automático tiene un costo energético real en algún centro de datos del mundo.
+    </div>
+  </div>
+</section>
 
-      <label for="opinion">Tu opinión</label>
-      <textarea id="opinion" name="opinion" required placeholder="Escribe aquí lo que piensas sobre el tema..."></textarea>
+<section id="opinion">
+  <div class="wrap">
+    <div class="opinion" data-reveal>
+      <div class="section-head">
+        <span class="mono">03 · Tu turno</span>
+        <h2>Cuéntanos tu opinión</h2>
+        <p>¿Cambiarías tus hábitos digitales después de leer esto? Este es tu espacio para decirlo.</p>
+      </div>
 
-      <button type="submit" id="btnEnviar">Enviar opinión</button>
+      <form id="formOpinion">
+        <div class="field">
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre">
+        </div>
+        <div class="field">
+          <label for="correo">Correo electrónico</label>
+          <input type="email" id="correo" name="correo" required placeholder="tu@correo.com">
+        </div>
+        <div class="field">
+          <label for="opinion">Tu opinión</label>
+          <textarea id="opinion" name="opinion" required placeholder="Escribe aquí lo que piensas sobre el tema..."></textarea>
+        </div>
 
-      <div id="mensaje"></div>
-    </form>
-  </section>
-
-</main>
+        <button type="submit" id="btnEnviar">Enviar opinión</button>
+        <div id="mensaje"></div>
+      </form>
+    </div>
+  </div>
+</section>
 
 <footer>
-  Práctica sobre impacto ambiental del almacenamiento en la nube — respuestas guardadas y agradecidas automáticamente vía Make.
+  <p>Práctica sobre impacto ambiental del almacenamiento en la nube — respuestas guardadas y agradecidas automáticamente vía Make.</p>
 </footer>
 
 <script>
@@ -224,6 +359,19 @@
       btn.textContent = "Enviar opinión";
     }
   });
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("in");
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
+  document.querySelectorAll("[data-reveal]").forEach(function (el) { io.observe(el); });
+  setTimeout(function () {
+    document.querySelectorAll("[data-reveal]").forEach(function (el) { el.classList.add("in"); });
+  }, 4000);
 </script>
 
 </body>
