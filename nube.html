@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Impacto ambiental del almacenamiento en la nube</title>
+<style>
+  :root {
+    --verde: #2e7d32;
+    --verde-claro: #e8f5e9;
+    --texto: #1c1c1c;
+    --fondo: #f7f9f7;
+    --borde: #cfe3d0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: var(--fondo);
+    color: var(--texto);
+    line-height: 1.6;
+  }
+  header {
+    background: var(--verde);
+    color: white;
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+  }
+  header h1 { margin: 0 0 .5rem; font-size: 1.8rem; }
+  header p { margin: 0; opacity: .9; }
+  main {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+  }
+  section {
+    background: white;
+    border: 1px solid var(--borde);
+    border-radius: 10px;
+    padding: 1.75rem;
+    margin-bottom: 1.75rem;
+  }
+  section h2 {
+    color: var(--verde);
+    margin-top: 0;
+    font-size: 1.3rem;
+    border-bottom: 2px solid var(--verde-claro);
+    padding-bottom: .5rem;
+  }
+  ul { padding-left: 1.2rem; }
+  li { margin-bottom: .5rem; }
+  label {
+    display: block;
+    font-weight: 600;
+    margin: 1rem 0 .35rem;
+  }
+  input[type="text"],
+  input[type="email"],
+  textarea {
+    width: 100%;
+    padding: .65rem .75rem;
+    border: 1px solid var(--borde);
+    border-radius: 6px;
+    font-size: 1rem;
+    font-family: inherit;
+  }
+  textarea { resize: vertical; min-height: 110px; }
+  button {
+    margin-top: 1.5rem;
+    background: var(--verde);
+    color: white;
+    border: none;
+    padding: .8rem 1.6rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  button:hover { background: #256428; }
+  button:disabled { opacity: .6; cursor: not-allowed; }
+  #mensaje {
+    margin-top: 1rem;
+    padding: .8rem 1rem;
+    border-radius: 6px;
+    display: none;
+  }
+  #mensaje.ok {
+    display: block;
+    background: var(--verde-claro);
+    color: #1b4d1e;
+    border: 1px solid var(--verde);
+  }
+  #mensaje.error {
+    display: block;
+    background: #fdecea;
+    color: #7a1c1c;
+    border: 1px solid #e57373;
+  }
+  footer {
+    text-align: center;
+    color: #667;
+    font-size: .85rem;
+    padding: 1rem;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🌍 Impacto ambiental del almacenamiento en la nube</h1>
+  <p>Una mirada rápida a lo que hay detrás de cada archivo que guardamos "en la nube"</p>
+</header>
+
+<main>
+
+  <section>
+    <h2>¿Qué es el almacenamiento en la nube?</h2>
+    <p>
+      El almacenamiento en la nube consiste en guardar archivos, fotos, videos y datos
+      en servidores remotos —propiedad de empresas como Google, Amazon o Microsoft—
+      en lugar de en el disco duro de un dispositivo local. Estos servidores viven en
+      instalaciones enormes llamadas <strong>centros de datos</strong>, que funcionan
+      las 24 horas del día, todos los días del año.
+    </p>
+  </section>
+
+  <section>
+    <h2>¿Por qué tiene un impacto ambiental?</h2>
+    <ul>
+      <li>
+        <strong>Consumo de energía:</strong> los centros de datos necesitan electricidad
+        constante para mantener miles de servidores encendidos y funcionando, gran parte
+        de la cual todavía proviene de fuentes no renovables.
+      </li>
+      <li>
+        <strong>Consumo de agua:</strong> muchos centros de datos usan agua para sus
+        sistemas de refrigeración, ya que el equipo genera grandes cantidades de calor
+        que debe disiparse constantemente.
+      </li>
+      <li>
+        <strong>Huella de carbono:</strong> la combinación de electricidad, refrigeración
+        y la fabricación del hardware genera emisiones de CO₂ asociadas a cada archivo
+        que subimos, duplicamos o dejamos olvidado "por si acaso".
+      </li>
+      <li>
+        <strong>Uso de suelo y materiales:</strong> construir y mantener estos centros
+        requiere terrenos, metales y componentes electrónicos cuya extracción también
+        tiene un costo ambiental.
+      </li>
+    </ul>
+    <p>
+      En resumen: aunque no lo veamos, cada foto duplicada, cada correo con adjuntos
+      pesados y cada respaldo automático tiene un costo energético real en algún
+      centro de datos del mundo.
+    </p>
+  </section>
+
+  <section>
+    <h2>Cuéntanos tu opinión</h2>
+    <p>
+      Este es tu espacio: ¿qué piensas sobre el impacto ambiental del almacenamiento
+      en la nube? ¿Cambiarías tus hábitos digitales después de leer esto? Escribe tu
+      nombre, tu correo y comparte tu opinión personal en el formulario.
+    </p>
+
+    <form id="formOpinion">
+      <label for="nombre">Nombre</label>
+      <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre">
+
+      <label for="correo">Correo electrónico</label>
+      <input type="email" id="correo" name="correo" required placeholder="tu@correo.com">
+
+      <label for="opinion">Tu opinión</label>
+      <textarea id="opinion" name="opinion" required placeholder="Escribe aquí lo que piensas sobre el tema..."></textarea>
+
+      <button type="submit" id="btnEnviar">Enviar opinión</button>
+
+      <div id="mensaje"></div>
+    </form>
+  </section>
+
+</main>
+
+<footer>
+  Práctica sobre impacto ambiental del almacenamiento en la nube — respuestas guardadas y agradecidas automáticamente vía Make.
+</footer>
+
+<script>
+  // ⚠️ Reemplaza esta URL por la de tu Webhook personalizado de Make
+  // (Make > Webhooks > Add > Custom webhook > Copy address to clipboard).
+  const WEBHOOK_URL = "https://hook.us1.make.com/PEGA_AQUI_TU_WEBHOOK";
+
+  const form = document.getElementById("formOpinion");
+  const mensaje = document.getElementById("mensaje");
+  const btn = document.getElementById("btnEnviar");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    mensaje.className = "";
+    mensaje.textContent = "";
+    btn.disabled = true;
+    btn.textContent = "Enviando...";
+
+    const datos = {
+      nombre: document.getElementById("nombre").value.trim(),
+      correo: document.getElementById("correo").value.trim(),
+      opinion: document.getElementById("opinion").value.trim(),
+    };
+
+    try {
+      await fetch(WEBHOOK_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(datos),
+      });
+
+      mensaje.className = "ok";
+      mensaje.textContent = "¡Gracias! Tu opinión fue enviada. Revisa tu correo, te llegará un mensaje de agradecimiento.";
+      form.reset();
+    } catch (err) {
+      mensaje.className = "error";
+      mensaje.textContent = "Hubo un problema al enviar tu opinión. Verifica tu conexión e inténtalo de nuevo.";
+    } finally {
+      btn.disabled = false;
+      btn.textContent = "Enviar opinión";
+    }
+  });
+</script>
+
+</body>
+</html>
