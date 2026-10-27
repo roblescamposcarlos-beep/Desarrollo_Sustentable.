@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IDH de mi estado</title>
+  <style>
+    :root {
+      --verde-oscuro: #1f5f3f;
+      --verde: #2e8b57;
+      --verde-claro: #e8f5ec;
+      --arena: #f7f4ea;
+      --texto: #1d2b24;
+      --borde: #b9d9c4;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+      background: linear-gradient(180deg, var(--verde-claro) 0%, var(--arena) 100%);
+      color: var(--texto);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      background: var(--verde-oscuro);
+      color: #fff;
+      padding: 28px 16px;
+      text-align: center;
+    }
+    header h1 { margin: 0 0 6px; font-size: clamp(1.6rem, 4vw, 2.4rem); }
+    header p { margin: 0; opacity: 0.9; }
+    main {
+      width: 100%;
+      max-width: 760px;
+      margin: 24px auto;
+      padding: 0 16px;
+      flex: 1;
+    }
+    .tarjeta {
+      background: #fff;
+      border: 1px solid var(--borde);
+      border-radius: 14px;
+      padding: 22px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 14px rgba(31, 95, 63, 0.08);
+    }
+    .tarjeta h2 { margin-top: 0; color: var(--verde-oscuro); font-size: 1.2rem; }
+    .componentes {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .componente {
+      background: var(--verde-claro);
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-size: 0.95rem;
+    }
+    .componente strong { display: block; color: var(--verde-oscuro); }
+    label { display: block; font-weight: 600; margin-bottom: 8px; }
+    .controles { display: flex; gap: 10px; flex-wrap: wrap; }
+    select {
+      flex: 1 1 240px;
+      padding: 12px;
+      font-size: 1rem;
+      border: 1px solid var(--borde);
+      border-radius: 10px;
+      background: #fff;
+      color: var(--texto);
+    }
+    button {
+      flex: 0 0 auto;
+      padding: 12px 22px;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #fff;
+      background: var(--verde);
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    button:hover:not(:disabled) { background: var(--verde-oscuro); }
+    button:disabled { background: #8fb9a0; cursor: not-allowed; }
+    #resultado {
+      margin-top: 18px;
+      padding: 16px;
+      min-height: 60px;
+      border-left: 5px solid var(--verde);
+      background: var(--verde-claro);
+      border-radius: 8px;
+      white-space: pre-line;
+      line-height: 1.55;
+      display: none;
+    }
+    #resultado.error { border-left-color: #b03a2e; background: #fdecea; }
+    footer {
+      text-align: center;
+      font-size: 0.85rem;
+      padding: 16px;
+      color: #4b5d53;
+    }
+    @media (max-width: 480px) {
+      .tarjeta { padding: 16px; }
+      button { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🌱 IDH de mi estado</h1>
+    <p>Consulta el Índice de Desarrollo Humano de las entidades federativas de México</p>
+  </header>
+
+  <main>
+    <section class="tarjeta">
+      <h2>¿Qué es el Índice de Desarrollo Humano?</h2>
+      <p>El IDH, elaborado por el Programa de las Naciones Unidas para el Desarrollo (PNUD), resume en un valor de 0 a 1 tres capacidades básicas de las personas. Mientras más cerca de 1, mayor es el nivel de desarrollo humano.</p>
+      <div class="componentes">
+        <div class="componente"><strong>❤️ Salud</strong>Vivir una vida larga y saludable</div>
+        <div class="componente"><strong>📚 Educación</strong>Adquirir conocimientos</div>
+        <div class="componente"><strong>💰 Ingreso</strong>Tener un nivel de vida digno</div>
+      </div>
+    </section>
+
+    <section class="tarjeta">
+      <label for="entidad">Elige una entidad federativa</label>
+      <div class="controles">
+        <select id="entidad">
+          <option>Aguascalientes</option>
+          <option>Baja California</option>
+          <option>Baja California Sur</option>
+          <option>Campeche</option>
+          <option>Chiapas</option>
+          <option>Chihuahua</option>
+          <option value="Ciudad de México (Distrito Federal)">Ciudad de México</option>
+          <option>Coahuila</option>
+          <option>Colima</option>
+          <option>Durango</option>
+          <option value="Estado de México (México)">Estado de México</option>
+          <option>Guanajuato</option>
+          <option>Guerrero</option>
+          <option>Hidalgo</option>
+          <option>Jalisco</option>
+          <option>Michoacán</option>
+          <option>Morelos</option>
+          <option>Nayarit</option>
+          <option>Nuevo León</option>
+          <option>Oaxaca</option>
+          <option>Puebla</option>
+          <option>Querétaro</option>
+          <option>Quintana Roo</option>
+          <option>San Luis Potosí</option>
+          <option selected>Sinaloa</option>
+          <option>Sonora</option>
+          <option>Tabasco</option>
+          <option>Tamaulipas</option>
+          <option>Tlaxcala</option>
+          <option>Veracruz</option>
+          <option>Yucatán</option>
+          <option>Zacatecas</option>
+        </select>
+        <button id="consultar" type="button">Consultar</button>
+      </div>
+      <div id="resultado" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <footer>
+    Datos: PNUD, Índice de Desarrollo Humano para las entidades federativas, México 2015 (datos de 2012).<br>
+    Práctica 3.2 · Desarrollo Sustentable · TecNM, Instituto Tecnológico de Mazatlán
+  </footer>
+
+  <script>
+    // Pega aquí la URL de tu webhook de Make (Webhooks → Custom webhook):
+    const WEBHOOK_URL = "https://hook.us2.make.com/naxwmsoesc4d0xjqhe7e2q9ed43ngnh2";
+
+    const selector = document.getElementById("entidad");
+    const boton = document.getElementById("consultar");
+    const resultado = document.getElementById("resultado");
+
+    boton.addEventListener("click", async () => {
+      const textoOriginal = boton.textContent;
+      boton.disabled = true;
+      boton.textContent = "Consultando...";
+      resultado.style.display = "block";
+      resultado.classList.remove("error");
+      resultado.textContent = "Consultando...";
+
+      try {
+        const respuesta = await fetch(WEBHOOK_URL, {
+          method: "POST",
+          body: new URLSearchParams({ entidad: selector.value })
+        });
+        if (!respuesta.ok) throw new Error("HTTP " + respuesta.status);
+        const texto = await respuesta.text();
+        resultado.textContent = texto;
+      } catch (error) {
+        resultado.classList.add("error");
+        resultado.textContent = "No se pudo obtener la información, intenta de nuevo.";
+      } finally {
+        boton.disabled = false;
+        boton.textContent = textoOriginal;
+      }
+    });
+  </script>
+</body>
+</html>
