@@ -6,127 +6,219 @@
   <title>IDH de mi estado</title>
   <style>
     :root {
-      --verde-oscuro: #1f5f3f;
-      --verde: #2e8b57;
-      --verde-claro: #e8f5ec;
-      --arena: #f7f4ea;
-      --texto: #1d2b24;
-      --borde: #b9d9c4;
+      --uva: #2a0845;
+      --morado: #5b0e91;
+      --violeta: #7b2cbf;
+      --lila: #c77dff;
+      --lavanda: #f1e4ff;
+      --fondo: #f7f0ff;
+      --texto: #1f0533;
     }
     * { box-sizing: border-box; }
     body {
       margin: 0;
-      font-family: "Segoe UI", Arial, Helvetica, sans-serif;
-      background: linear-gradient(180deg, var(--verde-claro) 0%, var(--arena) 100%);
+      font-family: "Arial Black", "Segoe UI", Arial, sans-serif;
       color: var(--texto);
+      background-color: var(--fondo);
+      background-image:
+        linear-gradient(60deg, rgba(123, 44, 191, 0.07) 25%, transparent 25%),
+        linear-gradient(-60deg, rgba(123, 44, 191, 0.07) 25%, transparent 25%);
+      background-size: 48px 84px;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
     }
-    header {
-      background: var(--verde-oscuro);
-      color: #fff;
-      padding: 28px 16px;
-      text-align: center;
+
+    /* Bloque con profundidad: cara frontal + caras laterales con sombras sólidas */
+    .bloque {
+      background: #fff;
+      border: 3px solid var(--uva);
+      box-shadow:
+        4px 4px 0 var(--violeta),
+        8px 8px 0 var(--morado),
+        12px 12px 0 var(--uva);
     }
-    header h1 { margin: 0 0 6px; font-size: clamp(1.6rem, 4vw, 2.4rem); }
-    header p { margin: 0; opacity: 0.9; }
+
+    header {
+      background: var(--morado);
+      border-bottom: 6px solid var(--uva);
+      padding: 34px 16px 40px;
+      text-align: center;
+      overflow: hidden;
+    }
+    .titulo {
+      display: inline-block;
+      background: var(--uva);
+      color: #fff;
+      padding: 14px 34px;
+      transform: skewX(-14deg);
+      box-shadow: 8px 8px 0 var(--lila);
+    }
+    .titulo h1 {
+      margin: 0;
+      transform: skewX(14deg);
+      font-size: clamp(1.7rem, 6vw, 3rem);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    header p {
+      margin: 22px auto 0;
+      max-width: 560px;
+      color: var(--lavanda);
+      font-family: "Segoe UI", Arial, sans-serif;
+      font-size: 1.05rem;
+    }
+
     main {
       width: 100%;
-      max-width: 760px;
-      margin: 24px auto;
+      max-width: 820px;
+      margin: 36px auto 44px;
       padding: 0 16px;
       flex: 1;
     }
-    .tarjeta {
-      background: #fff;
-      border: 1px solid var(--borde);
-      border-radius: 14px;
-      padding: 22px;
-      margin-bottom: 20px;
-      box-shadow: 0 4px 14px rgba(31, 95, 63, 0.08);
+    section { padding: 24px; margin-bottom: 34px; }
+
+    .etiqueta {
+      display: inline-block;
+      background: var(--violeta);
+      color: #fff;
+      padding: 6px 18px;
+      margin: 0 0 16px 4px;
+      transform: skewX(-14deg);
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
-    .tarjeta h2 { margin-top: 0; color: var(--verde-oscuro); font-size: 1.2rem; }
+    .etiqueta span { display: inline-block; transform: skewX(14deg); }
+
+    p.texto {
+      margin: 0 0 18px;
+      font-family: "Segoe UI", Arial, sans-serif;
+      line-height: 1.6;
+      color: #3a1656;
+    }
+
     .componentes {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 10px;
-      margin-top: 12px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
     }
-    .componente {
-      background: var(--verde-claro);
-      border-radius: 10px;
-      padding: 10px 12px;
-      font-size: 0.95rem;
+    .comp {
+      background: var(--lavanda);
+      border: 3px solid var(--uva);
+      padding: 14px 12px;
+      transform: skewX(-8deg);
+      box-shadow: 5px 5px 0 var(--violeta);
     }
-    .componente strong { display: block; color: var(--verde-oscuro); }
-    label { display: block; font-weight: 600; margin-bottom: 8px; }
-    .controles { display: flex; gap: 10px; flex-wrap: wrap; }
+    .comp > div { transform: skewX(8deg); }
+    .comp strong { display: block; color: var(--morado); text-transform: uppercase; font-size: 0.95rem; }
+    .comp small { display: block; margin-top: 4px; font-family: "Segoe UI", Arial, sans-serif; font-size: 0.88rem; color: #4a2468; }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--morado);
+      text-transform: uppercase;
+      font-size: 0.9rem;
+    }
+    .controles { display: flex; gap: 16px; flex-wrap: wrap; align-items: stretch; }
     select {
       flex: 1 1 240px;
-      padding: 12px;
+      padding: 13px 14px;
       font-size: 1rem;
-      border: 1px solid var(--borde);
-      border-radius: 10px;
-      background: #fff;
+      font-family: "Segoe UI", Arial, sans-serif;
+      font-weight: bold;
       color: var(--texto);
+      background: var(--lavanda);
+      border: 3px solid var(--uva);
+      border-radius: 0;
+      box-shadow: 5px 5px 0 var(--uva);
+      outline: none;
     }
+    select:focus { background: #fff; box-shadow: 5px 5px 0 var(--lila); }
     button {
       flex: 0 0 auto;
-      padding: 12px 22px;
+      padding: 13px 34px;
+      font-family: inherit;
       font-size: 1rem;
-      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
       color: #fff;
-      background: var(--verde);
-      border: none;
-      border-radius: 10px;
+      background: var(--violeta);
+      border: 3px solid var(--uva);
+      border-radius: 0;
+      transform: skewX(-14deg);
+      box-shadow: 6px 6px 0 var(--uva);
       cursor: pointer;
-      transition: background 0.2s;
+      transition: transform 0.1s, box-shadow 0.1s, background 0.2s;
     }
-    button:hover:not(:disabled) { background: var(--verde-oscuro); }
-    button:disabled { background: #8fb9a0; cursor: not-allowed; }
+    button span { display: inline-block; transform: skewX(14deg); }
+    button:hover:not(:disabled) { background: var(--morado); }
+    button:active:not(:disabled) { transform: skewX(-14deg) translate(4px, 4px); box-shadow: 2px 2px 0 var(--uva); }
+    button:disabled { background: #a98bc4; cursor: wait; }
+
     #resultado {
-      margin-top: 18px;
-      padding: 16px;
-      min-height: 60px;
-      border-left: 5px solid var(--verde);
-      background: var(--verde-claro);
-      border-radius: 8px;
-      white-space: pre-line;
-      line-height: 1.55;
       display: none;
+      margin-top: 26px;
+      padding: 18px 20px;
+      background: var(--lavanda);
+      border: 3px solid var(--uva);
+      border-left: 14px solid var(--violeta);
+      box-shadow: 8px 8px 0 var(--uva);
+      font-family: "Segoe UI", Arial, sans-serif;
+      font-size: 1rem;
+      line-height: 1.6;
+      white-space: pre-line;
     }
-    #resultado.error { border-left-color: #b03a2e; background: #fdecea; }
+    #resultado.error {
+      background: #ffe6ee;
+      border-left-color: #c2185b;
+      color: #7a0f3a;
+    }
+
     footer {
+      background: var(--uva);
+      border-top: 6px solid var(--violeta);
+      color: var(--lavanda);
       text-align: center;
+      font-family: "Segoe UI", Arial, sans-serif;
       font-size: 0.85rem;
-      padding: 16px;
-      color: #4b5d53;
+      line-height: 1.5;
+      padding: 18px 16px;
     }
-    @media (max-width: 480px) {
-      .tarjeta { padding: 16px; }
+
+    @media (max-width: 640px) {
+      .componentes { grid-template-columns: 1fr; }
+      section { padding: 18px; }
+      .bloque {
+        box-shadow:
+          3px 3px 0 var(--violeta),
+          6px 6px 0 var(--morado),
+          9px 9px 0 var(--uva);
+      }
       button { width: 100%; }
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>🌱 IDH de mi estado</h1>
+    <div class="titulo"><h1>IDH de mi estado</h1></div>
     <p>Consulta el Índice de Desarrollo Humano de las entidades federativas de México</p>
   </header>
 
   <main>
-    <section class="tarjeta">
-      <h2>¿Qué es el Índice de Desarrollo Humano?</h2>
-      <p>El IDH, elaborado por el Programa de las Naciones Unidas para el Desarrollo (PNUD), resume en un valor de 0 a 1 tres capacidades básicas de las personas. Mientras más cerca de 1, mayor es el nivel de desarrollo humano.</p>
+    <section class="bloque">
+      <div class="etiqueta"><span>¿Qué es el IDH?</span></div>
+      <p class="texto">El Índice de Desarrollo Humano, creado por el Programa de las Naciones Unidas para el Desarrollo (PNUD), resume en un valor de 0 a 1 tres capacidades básicas de las personas. Entre más cerca de 1, mayor es el nivel de desarrollo humano.</p>
       <div class="componentes">
-        <div class="componente"><strong>❤️ Salud</strong>Vivir una vida larga y saludable</div>
-        <div class="componente"><strong>📚 Educación</strong>Adquirir conocimientos</div>
-        <div class="componente"><strong>💰 Ingreso</strong>Tener un nivel de vida digno</div>
+        <div class="comp"><div><strong>🩺 Salud</strong><small>Vivir una vida larga y saludable</small></div></div>
+        <div class="comp"><div><strong>🎓 Educación</strong><small>Adquirir conocimientos</small></div></div>
+        <div class="comp"><div><strong>💼 Ingreso</strong><small>Tener un nivel de vida digno</small></div></div>
       </div>
     </section>
 
-    <section class="tarjeta">
+    <section class="bloque">
+      <div class="etiqueta"><span>Consulta</span></div>
       <label for="entidad">Elige una entidad federativa</label>
       <div class="controles">
         <select id="entidad">
@@ -163,7 +255,7 @@
           <option>Yucatán</option>
           <option>Zacatecas</option>
         </select>
-        <button id="consultar" type="button">Consultar</button>
+        <button id="consultar" type="button"><span>Consultar</span></button>
       </div>
       <div id="resultado" aria-live="polite"></div>
     </section>
@@ -180,12 +272,13 @@
 
     const selector = document.getElementById("entidad");
     const boton = document.getElementById("consultar");
+    const textoBoton = boton.querySelector("span");
     const resultado = document.getElementById("resultado");
 
     boton.addEventListener("click", async () => {
-      const textoOriginal = boton.textContent;
+      const textoOriginal = textoBoton.textContent;
       boton.disabled = true;
-      boton.textContent = "Consultando...";
+      textoBoton.textContent = "Consultando...";
       resultado.style.display = "block";
       resultado.classList.remove("error");
       resultado.textContent = "Consultando...";
@@ -203,7 +296,7 @@
         resultado.textContent = "No se pudo obtener la información, intenta de nuevo.";
       } finally {
         boton.disabled = false;
-        boton.textContent = textoOriginal;
+        textoBoton.textContent = textoOriginal;
       }
     });
   </script>
